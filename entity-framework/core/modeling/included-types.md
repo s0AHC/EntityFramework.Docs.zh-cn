@@ -13,19 +13,19 @@ ms.locfileid: "42996145"
 ---
 # <a name="including--excluding-types"></a>包括和排除类型
 
-模型表示 EF 有关具有元数据类型，将尝试读取和写入从/向数据库实例中包含一个类型。
+模型中包含一个类型意为EF有这个类型的元数据并将尝试从/往数据库实例进行读取/写入。
 
 ## <a name="conventions"></a>约定
 
-按照约定，在中公开的类型`DbSet`上您的上下文属性都包含在您的模型。 此外，类型中提及的`OnModelCreating`，还提供了方法。 最后，通过以递归方式浏览已发现类型的导航属性找到的任何类型也包括在模型中。
+按照约定，在您的上下文`DbSet`属性中公开的类型都包含在您的模型。此外，在`OnModelCreating`方法中提及的类型同样被包含在您的模型中。最后，通过以递归方式浏览已发现类型的导航属性所找到的任何类型也包括在模型中。
 
-**例如，以下代码列表中发现所有三种类型：**
+**例如，以下代码中列出了上述所有三种类型发现的情况：**
 
-* `Blog` 因为在公开`DbSet`上下文属性
+* `Blog` 在`DbSet`上下文属性中公开的类型
 
-* `Post` 因为发现通过`Blog.Posts`导航属性
+* `Post` 通过`Blog.Posts`导航属性被发现的类型
 
-* `AuditEntry` 因为中提及 `OnModelCreating`
+* `AuditEntry` 在`OnModelCreating`方法中提及的类型
 
 <!-- [!code-csharp[Main](samples/core/Modeling/Conventions/Samples/IncludedTypes.cs?highlight=3,7,16)] -->
 ``` csharp
@@ -66,7 +66,7 @@ public class AuditEntry
 
 ## <a name="data-annotations"></a>数据注释
 
-可以使用数据注释来从模型中排除类型。
+您可以使用数据注释来从模型中排除类型。
 
 <!-- [!code-csharp[Main](samples/core/Modeling/DataAnnotations/Samples/IgnoreType.cs?highlight=9)] -->
 ``` csharp
@@ -87,7 +87,7 @@ public class BlogMetadata
 
 ## <a name="fluent-api"></a>Fluent API
 
-Fluent API 可用于从模型中排除类型。
+您也可以用Fluent API从模型中排除类型。
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/IgnoreType.cs?highlight=7)] -->
 ``` csharp
